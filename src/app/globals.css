@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -18,16 +18,64 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+} */
+
+#markdown h2 {
+  font-size: 2rem !important;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 10px;
+}
+
+#markdown h3 {
+  font-size: 1.5rem !important;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+}
+
+#markdown ol li {
+  font-size: 1.2rem !important;
+}
+
+#markdown p {
+  font-size: 1.2rem !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#markdown blockquote {
+  border: 1px solid #27a9e3;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: 10px solid #27a9e3;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  #markdown h2 {
+    font-size: 1.5rem !important;
+  }
+
+  #markdown h3 {
+    font-size: 1.2rem !important;
+  }
+
+  #markdown ol li {
+    font-size: 1rem !important;
+  }
+
+  #markdown p {
+    font-size: 1rem !important;
   }
 }
