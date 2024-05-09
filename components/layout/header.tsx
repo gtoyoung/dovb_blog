@@ -19,12 +19,10 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import AuthService from "services/firebase/auth";
-import FbDatabase from "services/firebase/database";
 import { useAuth } from "services/authprovider";
 import { useEffect, useState } from "react";
 
 const authService = new AuthService();
-const db = new FbDatabase(false);
 
 interface NavItem {
   label: string;

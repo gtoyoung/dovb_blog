@@ -15,25 +15,9 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  useDisclosure,
 } from "@chakra-ui/react";
 import ImgList from "./imglist";
 import GiphyGrid from "./giphy";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 500,
-  height: 500,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
-};
 
 const FileModal = ({ uid, customClick, isOpen, onClose }) => {
   const [pictures, setPictures] = useState([] as any[]);

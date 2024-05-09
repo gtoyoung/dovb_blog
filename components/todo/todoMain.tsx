@@ -17,15 +17,14 @@ import {
 import { onValue } from "firebase/database";
 import { useEffect, useState } from "react";
 import { useAuth } from "services/authprovider";
-import AuthService from "services/firebase/auth";
 import FbDatabase from "services/firebase/database";
-import { Post, PostDetail } from "type/google.types";
+import { Post } from "type/google.types";
 import { InputModal } from "./inputModal";
 import Link from "next/link";
 import Image from "next/image";
 import FileModal from "components/util/filemodal";
 
-const authService = new AuthService();
+// const authService = new AuthService();
 const db = new FbDatabase(false);
 
 export const TodoMain = () => {
@@ -33,7 +32,6 @@ export const TodoMain = () => {
   const { toast } = createStandaloneToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [post, setPost] = useState(null as PostDetail);
   const [posts, setPosts] = useState([] as Post[]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [profile, setProfile] = useState("");
@@ -174,7 +172,6 @@ export const TodoMain = () => {
           isAdmin={isAdmin}
           status={postStatus}
           isOpen={isOpen}
-          onOpen={onOpen}
           onClose={onClose}
         />
       )}

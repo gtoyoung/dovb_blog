@@ -20,7 +20,7 @@ interface NasaPhoto {
 
 export default function SpacePicture({ children }: { children: NasaPicture[] }) {
   // img 태그 자체를 콜백형태로 useImgIObserver로 전달한다.
-  const [target, setTarget] = useState(null);
+  const [target] = useState(null);
   // 이미지 리스트
   const [photos, setPhotos] = useState([] as Array<NasaPhoto>);
 

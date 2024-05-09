@@ -5,7 +5,6 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  Flex,
   Stack,
   FormControl,
   FormLabel,
@@ -25,7 +24,6 @@ export const InputModal = ({
   isAdmin,
   status,
   isOpen,
-  onOpen,
   onClose,
 }) => {
   const [title, setTitle] = useState(defaultTitle);

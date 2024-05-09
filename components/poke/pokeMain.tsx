@@ -14,7 +14,7 @@ let currentPage = 21;
 
 export const PokeMain = ({ children }: { children: PoketInfo[] }) => {
   const [loaded, setLoaded] = useState(false);
-  const [selectPoke, setSelectPoke] = useState(null as PoketInfo);
+  // const [selectPoke, setSelectPoke] = useState(null as PoketInfo);
   const [pokemons, setPokemons] = useState([] as PoketInfo[]);
   const cardListRef = useRef(null);
   const onIntersect = ([entry], observer) => {
