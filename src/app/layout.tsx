@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import WithSubnavigation from "components/layout/header";
-import { ColorModeScript } from "@chakra-ui/react";
+import { ColorModeScript, Container } from "@chakra-ui/react";
 import theme from "components/config/theme";
 import { Providers } from "./providers";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
         <Providers>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <WithSubnavigation />
-          {children}
+          <Container maxW={"max-content"}>{children}</Container>
         </Providers>
       </body>
     </html>

@@ -6,10 +6,12 @@ import {
   Card,
   CardBody,
   CardHeader,
+  HStack,
   Heading,
   Stack,
   StackDivider,
   Text,
+  createStandaloneToast,
   useDisclosure,
 } from "@chakra-ui/react";
 import { onValue } from "firebase/database";
@@ -19,24 +21,28 @@ import AuthService from "services/firebase/auth";
 import FbDatabase from "services/firebase/database";
 import { Post, PostDetail } from "type/google.types";
 import { InputModal } from "./inputModal";
-import { CustomToast } from "components/common/toast";
 import Link from "next/link";
+import Image from "next/image";
+import FileModal from "components/util/filemodal";
 
 const authService = new AuthService();
 const db = new FbDatabase(false);
 
 export const TodoMain = () => {
   const { user } = useAuth();
+  const { toast } = createStandaloneToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [post, setPost] = useState(null as PostDetail);
   const [posts, setPosts] = useState([] as Post[]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [profile, setProfile] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [postId, setPostId] = useState("");
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
   const [postStatus, setPostStatus] = useState("");
-  const [resultMsg, setResultMsg] = useState("");
+  const [isAdd, setIsAdd] = useState(false);
+
   useEffect(() => {
     if (user) {
       user.getIdTokenResult().then((result) => {
@@ -86,17 +92,36 @@ export const TodoMain = () => {
   }, [user]);
 
   const actionSuccess = (message: string) => {
-    setResultMsg(message);
+    toast({
+      title: "Success",
+      description: message,
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   return (
     <>
       <Card>
-        <CardHeader>
-          <Heading size={"md"}>{user?.displayName}`s ToDo List</Heading>
-        </CardHeader>
-        <CardBody>
+        <HStack>
           <Box>
+            <Image
+              src={profile}
+              alt=""
+              width={150}
+              height={150}
+              style={{ borderRadius: "100px" }}
+              onClick={() => {
+                setIsAdd(true);
+                onOpen();
+              }}
+            />
+          </Box>
+          <CardHeader>
+            <Heading size={"xl"}>{user?.displayName}`s ToDo List</Heading>
+          </CardHeader>
+          <Box display={"flex"}>
             <Button
               onClick={() => {
                 setPostId("");
@@ -109,6 +134,9 @@ export const TodoMain = () => {
               등록하기
             </Button>
           </Box>
+        </HStack>
+
+        <CardBody>
           <Stack divider={<StackDivider />} spacing={"4"}>
             {posts.map((post, index) => {
               return (
@@ -136,31 +164,31 @@ export const TodoMain = () => {
           </Stack>
         </CardBody>
       </Card>
-      <InputModal
-        uId={user?.uid}
-        postId={postId}
-        defaultTitle={postTitle}
-        defaultContent={postContent}
-        successCallback={actionSuccess}
-        isAdmin={isAdmin}
-        status={postStatus}
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-      />
-      {resultMsg !== "" && (
-        <CustomToast
-          title={"result"}
-          description={resultMsg}
-          status={"success"}
-          duration={9000}
-          isClosable={true}
-          callback={() => {
-            setResultMsg("");
-          }}
+      {!isAdd && (
+        <InputModal
+          uId={user?.uid}
+          postId={postId}
+          defaultTitle={postTitle}
+          defaultContent={postContent}
+          successCallback={actionSuccess}
+          isAdmin={isAdmin}
+          status={postStatus}
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
         />
       )}
-      ;
+      {isAdd && (
+        <FileModal
+          uid={user.uid}
+          onClose={() => {
+            setIsAdd(false);
+            onClose();
+          }}
+          customClick={null}
+          isOpen={isOpen}
+        />
+      )}
     </>
   );
 };

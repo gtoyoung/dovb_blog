@@ -11,6 +11,7 @@ import {
   FormLabel,
   Input,
   Button,
+  Box,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import FbDatabase from "services/firebase/database";
@@ -121,6 +122,9 @@ export const InputModal = ({
         })
         .catch(() => {
           successCallback("삭제 실패");
+        })
+        .finally(() => {
+          onClose();
         });
     }
   };
@@ -133,7 +137,7 @@ export const InputModal = ({
           <ModalHeader>{title === "" ? "Create TODO" : "Edit TODO"}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Flex>
+            <Box>
               <Stack spacing={4}>
                 <FormControl id="title">
                   <FormLabel>Title</FormLabel>
@@ -143,6 +147,7 @@ export const InputModal = ({
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
+                    readOnly={status === "complete"}
                   />
                 </FormControl>
                 <FormControl id="content">
@@ -153,6 +158,7 @@ export const InputModal = ({
                     onChange={(e) => {
                       setContent(e.target.value);
                     }}
+                    readOnly={status === "complete"}
                   />
                 </FormControl>
                 <Stack spacing={6} direction={["column", "row"]}>
@@ -226,7 +232,7 @@ export const InputModal = ({
                   )}
                 </Stack>
               </Stack>
-            </Flex>
+            </Box>
           </ModalBody>
         </ModalContent>
       </Modal>

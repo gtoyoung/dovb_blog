@@ -134,6 +134,7 @@ export default function WithSubnavigation() {
               onClick={() => {
                 authService.logout().then(() => {
                   setMenu(NAV_ITEMS);
+                  location.href = "/";
                 });
               }}
             >
