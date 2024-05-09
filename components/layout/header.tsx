@@ -56,6 +56,16 @@ let NAV_ITEMS: Array<NavItem> = [
         subLabel: "일정 관리",
         href: "/task",
       },
+      {
+        label: "Soccer",
+        subLabel: "축구 뉴스",
+        href: "/soccer",
+      },
+      {
+        label: "Cloud",
+        subLabel: "파일 공유",
+        href: "/cloud",
+      },
     ],
   },
 ];
