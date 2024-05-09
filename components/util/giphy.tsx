@@ -1,3 +1,4 @@
+import { Box, Input } from "@chakra-ui/react";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import * as reactComponents from "@giphy/react-components";
 import _ from "lodash";
@@ -46,9 +47,9 @@ const GiphyGrid = ({ uid, customClick }) => {
 
   return (
     <>
-      <div className="form-group">
-        <input type="text" placeholder="검색어를 입력하세요." id="searchInput" onChange={onDebounceChange} />
-      </div>
+      <Box>
+        <Input type="text" placeholder="검색어를 입력하세요" onChange={onDebounceChange} />
+      </Box>
       <reactComponents.Grid
         key={search}
         onGifClick={customClick ? callbackCustom : gifClickhandler}

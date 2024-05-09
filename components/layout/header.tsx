@@ -50,7 +50,13 @@ let NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Exp",
-    href: "#",
+    children: [
+      {
+        label: "Task",
+        subLabel: "일정 관리",
+        href: "/task",
+      },
+    ],
   },
 ];
 

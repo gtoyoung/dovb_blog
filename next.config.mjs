@@ -25,6 +25,22 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
+  rewrites: async () => {
+    return [
+      {
+        source: "/trees",
+        destination: "/trees/index.html",
+      },
+      {
+        source: "/soccer",
+        destination: "/soccer/index.html",
+      },
+      {
+        source: "/cloud",
+        destination: "/cloud/index.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

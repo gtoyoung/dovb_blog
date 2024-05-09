@@ -3,7 +3,6 @@ import { useDropzone } from "react-dropzone";
 import FbStorage from "services/firebase/storage";
 import {
   Box,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -22,6 +21,9 @@ import GiphyGrid from "./giphy";
 const FileModal = ({ uid, customClick, isOpen, onClose }) => {
   const [pictures, setPictures] = useState([] as any[]);
   const storage = new FbStorage();
+
+  useEffect(() => {}, [isOpen]);
+
   useEffect(() => {
     storage.getUserFileList(uid).then((result) => {
       setPictures(result);
@@ -45,12 +47,6 @@ const FileModal = ({ uid, customClick, isOpen, onClose }) => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: {
-      "image/png": [".png"],
-      "image/jpeg": [".jpeg"],
-      "image/gif": [".gif"],
-      "image/jpg": [".jpg"],
-    },
   });
 
   return (
@@ -64,17 +60,10 @@ const FileModal = ({ uid, customClick, isOpen, onClose }) => {
             <Box>
               <Tabs>
                 <TabList>
-                  <Tab>이미지 직접 선택</Tab>
                   <Tab>GIPHY</Tab>
+                  <Tab>이미지 직접 선택</Tab>
                 </TabList>
                 <TabPanels>
-                  <TabPanel>
-                    <Box {...getRootProps}>
-                      <Input {...getInputProps} />
-                      {isDragActive ? <p>등록합니다.</p> : <p>이미지 파일만 올려주세요(ex).jpg, .gif etc...)</p>}
-                    </Box>
-                    <ImgList items={pictures} uid={uid} />
-                  </TabPanel>
                   <TabPanel>
                     <Box
                       height={"350px"}
@@ -89,6 +78,17 @@ const FileModal = ({ uid, customClick, isOpen, onClose }) => {
                       <GiphyGrid uid={uid} customClick={customClick} />
                     </Box>
                     powered by <span style={{ fontWeight: "bold" }}>Giphy</span>
+                  </TabPanel>
+                  <TabPanel>
+                    <Box {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      {isDragActive ? (
+                        <p style={{ fontWeight: "bold", fontSize: "2em" }}>등록합니다.</p>
+                      ) : (
+                        <p>이미지 파일만 올려주세요(ex).jpg, .gif etc...)</p>
+                      )}
+                    </Box>
+                    <ImgList items={pictures} uid={uid} />
                   </TabPanel>
                 </TabPanels>
               </Tabs>
