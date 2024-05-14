@@ -24,7 +24,7 @@ const nextConfig = {
       },
     ],
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   rewrites: async () => {
     return [
       {

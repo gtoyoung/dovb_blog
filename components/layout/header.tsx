@@ -66,6 +66,11 @@ let NAV_ITEMS: Array<NavItem> = [
         subLabel: "파일 공유",
         href: "/cloud",
       },
+      {
+        label: "Omok",
+        subLabel: "오목 게임",
+        href: "/omok",
+      },
     ],
   },
 ];
