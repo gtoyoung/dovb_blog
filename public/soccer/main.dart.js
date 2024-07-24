@@ -23989,7 +23989,7 @@ abl:function abl(){},
 a2q:function a2q(){},
 K9:function K9(){},
 a5h:function a5h(a){this.a=a},
-aIW(a){return A.ajT(new A.akg(a,null),t.Wd)},
+aIW(a,b){return A.ajT(new A.akg(a,b),t.Wd)},
 ajT(a,b){return A.aHN(a,b,b)},
 aHN(a,b,c){var s=0,r=A.M(c),q,p=2,o,n=[],m,l
 var $async$ajT=A.H(function(d,e){if(d===1){o=e
@@ -24705,31 +24705,32 @@ else s=a
 return s},
 W9(a,b,c,d){var s=0,r=A.M(t.TR),q,p,o,n,m,l,k,j,i,h,g,f
 var $async$W9=A.H(function(e,a0){if(e===1)return A.J(a0,r)
-while(true)switch(s){case 0:j=A.b([],t.rb)
-i=A.h(isNaN(d)?"10":d)
-h=b.length===0?"":"&date="+b
-g=c.length!==0?"&search="+c:""
+while(true)switch(s){case 0:k=A.b([],t.rb)
+j=A.h(isNaN(d)?"10":d)
+i=b.length===0?"":"&date="+b
+h=c.length!==0?"&search="+c:""
+g=t.N
 s=3
-return A.I(A.aIW(A.hp("https://api.dovb.kro.kr/newsList"+("?page="+a)+("&size="+i)+h+g,0,null)),$async$W9)
+return A.I(A.aIW(A.hp("https://api.dovb.kro.kr/newsList"+("?page="+a)+("&size="+j)+i+h,0,null),A.an(["NEWS-API-KEY","DovbAuth"],g,g)),$async$W9)
 case 3:f=a0
 if(f.b===200){p=B.aX.Eb(0,B.K.ew(0,f.w),null)
-i=J.ar(p)
-o=i.i(p,"content")
-i.i(p,"totalPages")
-for(i=J.ai(o);i.p();){n=i.gF(i)
-h=J.ar(n)
-h.i(n,"oid")
-h.i(n,"aid")
-h.i(n,"officeName")
-g=h.i(n,"title")
-m=h.i(n,"subContent")
-l=h.i(n,"thumbnail")
-if(l==null)l=""
-h.i(n,"datetime")
-h.i(n,"sectionName")
-k=h.i(n,"link")
-h.i(n,"words")
-j.push(new A.oF(g,m,l,k))}q=j
+j=J.ar(p)
+o=j.i(p,"content")
+j.i(p,"totalPages")
+for(j=J.ai(o);j.p();){n=j.gF(j)
+i=J.ar(n)
+i.i(n,"oid")
+i.i(n,"aid")
+i.i(n,"officeName")
+h=i.i(n,"title")
+g=i.i(n,"subContent")
+m=i.i(n,"thumbnail")
+if(m==null)m=""
+i.i(n,"datetime")
+i.i(n,"sectionName")
+l=i.i(n,"link")
+i.i(n,"words")
+k.push(new A.oF(h,g,m,l))}q=k
 s=1
 break}throw A.c(new A.bC())
 case 1:return A.K(q,r)}})
@@ -78993,6 +78994,7 @@ vV(a,b,c){return this.a9P(a,b,c)},
 a9P(a,b,c){var s=0,r=A.M(t.Wd),q,p=this,o,n
 var $async$vV=A.H(function(d,e){if(d===1)return A.J(e,r)
 while(true)switch(s){case 0:o=A.arH(a,b)
+o.r.P(0,c)
 n=A
 s=3
 return A.I(p.ft(0,o),$async$vV)
